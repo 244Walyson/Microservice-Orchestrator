@@ -30,7 +30,7 @@ services:
     entrypoint: /bin/sh
     command: -c "echo \"$$CONSOLE_CONFIG_FILE\" > /tmp/config.yml; /app/console"
     ports:
-      - 8081:8080
+      - 8085:8080
     networks:
       - orchestrator-saga
     environment:
@@ -51,7 +51,7 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=1234567
     ports:
-      - 27017:27017
+      - 27018:27017
 
   payment-db:
     container_name: payment-db
@@ -99,7 +99,7 @@ services:
       - orchestrator-saga
     environment:
       - KAFKA_BROKER=kafka:29092
-      - MONGO_DB-URL=mongodb://admin:1234567@order-db:27017
+      - MONGO_DB-URL=mongodb://admin:1234567@order-db:27018
     ports:
       - 3000:3000
 

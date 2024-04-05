@@ -15,7 +15,7 @@ spring:
   data:
     mongodb:
       database: orders
-      uri: ${MONGO_DB_URL:mongodb://admin:1234567@localhost:27017}
+      uri: ${MONGO_DB_URL:mongodb://admin:1234567@localhost:27018}
 
 
 logging:

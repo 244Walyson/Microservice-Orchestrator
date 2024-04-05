@@ -1,38 +1,22 @@
 package br.com.microservices.orchestrated.orchestratorservice.config.kafka;
 
-import static br.com.microservices.orchestrated.orchestratorservice.core.enums.ETopic.BASE_ORCHESTRATOR;
-import static br.com.microservices.orchestrated.orchestratorservice.core.enums.ETopic.FINISH_SUCCESS;
-import static br.com.microservices.orchestrated.orchestratorservice.core.enums.ETopic.FINSH_FAIL;
-import static br.com.microservices.orchestrated.orchestratorservice.core.enums.ETopic.INVENTORY_FAIL;
-import static br.com.microservices.orchestrated.orchestratorservice.core.enums.ETopic.INVENTORY_SUCCESS;
-import static br.com.microservices.orchestrated.orchestratorservice.core.enums.ETopic.PAYMENT_FAIL;
-import static br.com.microservices.orchestrated.orchestratorservice.core.enums.ETopic.PAYMENT_SUCCESS;
-import static br.com.microservices.orchestrated.orchestratorservice.core.enums.ETopic.PRODUCT_VALIDATION_FAIL;
-import static br.com.microservices.orchestrated.orchestratorservice.core.enums.ETopic.PRODUCT_VALIDATION_SUCCESS;
-import static br.com.microservices.orchestrated.orchestratorservice.core.enums.ETopic.START_SAGA;
-
-import java.util.HashMap;
-import java.util.Map;
-
+import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
-import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
-import org.apache.kafka.common.serialization.Serdes.StringSerde;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.config.TopicBuilder;
-import org.springframework.kafka.core.ConsumerFactory;
-import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
-import org.springframework.kafka.core.DefaultKafkaProducerFactory;
-import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.kafka.core.ProducerFactory;
+import org.springframework.kafka.core.*;
 
-import lombok.RequiredArgsConstructor;
+import java.util.HashMap;
+import java.util.Map;
+
+import static br.com.microservices.orchestrated.orchestratorservice.core.enums.ETopic.*;
 
 @EnableKafka
 @Configuration
@@ -107,7 +91,7 @@ public class KafkaConfig {
 
   @Bean
   public NewTopic finishFail() {
-    return buildTopic(FINSH_FAIL.getTopic());
+    return buildTopic(FINISH_FAIL.getTopic());
   }
 
   @Bean
